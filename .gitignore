@@ -1,0 +1,32 @@
+# Python bytecode, test output, and packaging artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+env/
+
+# IDE and notebook state
+.vscode/
+.idea/
+.ipynb_checkpoints/
+
+# Generated outputs and private configuration at repository root
+/logs/
+/outputs/
+/results/
+/data/
+/configs/*.local.yaml
+/configs/*.private.yaml
+*.log
+
+# Operating-system files
+.DS_Store
+Thumbs.db

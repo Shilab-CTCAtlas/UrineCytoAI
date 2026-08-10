@@ -1,0 +1,19 @@
+# Install a PyTorch/TorchVision build compatible with your CUDA/driver first.
+numpy>=1.21
+pandas>=1.3
+openpyxl>=3.0
+scikit-learn>=1.0
+torch>=1.9
+torchvision>=0.10
+Pillow>=8.3
+matplotlib>=3.4
+seaborn>=0.11
+tabulate>=0.8.9
+opencv-python>=4.5
+openslide-python>=1.2
+tqdm>=4.60
+ultralytics>=8.3
+supervision>=0.20
+umap-learn>=0.5
+scipy>=1.7
+PyYAML>=6.0
