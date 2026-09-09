@@ -30,7 +30,6 @@ from cross_cluster_matching.models.models import get_model_and_transform
 from cross_cluster_matching.data.data_utils import collect_reference_data, collect_image_paths, CellImageDataset
 from cross_cluster_matching.models.feature_extractor import extract_features_with_cell_size
 from cross_cluster_matching.clustering.K_optimizer import optimize_k_for_candidate_clustering
-from cross_cluster_matching.clustering.calculate_consensus_score import calculate_consensus_score
 from cross_cluster_matching.clustering.matching_rule_application import identify_matching_clusters, save_matched_cells, check_matching_rules
 from cross_cluster_matching.visualization.visualization import (
     count_non_background_pixels,

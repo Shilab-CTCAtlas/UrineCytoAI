@@ -18,8 +18,11 @@ script that extracts detected single-cell and cluster crops.
 │   ├── step2.2.train_yolo.py             # YOLO detector training
 │   ├── step3.train_classifier.py         # Benign/malignant classifier training
 │   └── step4.top4_models_clustering.py   # Top-four model clustering analysis
-├── Soft/shilab_pipeline/application/
-│   └── step1_2_yolo_model_urine.py       # Streaming SVS + YOLO inference
+├── Soft/
+│   ├── shilab_pipeline/application/
+│   │   └── step1_2_yolo_model_urine.py   # Streaming SVS + YOLO inference
+│   ├── shilab-binary-classifier/          # Benign/malignant classifier package
+│   └── shilab-cluster-algorithm/          # Cluster matching package
 ├── models/
 │   ├── yolo/                             # YOLO checkpoint
 │   ├── binary-classifier/                # Binary-classification checkpoints
@@ -34,6 +37,8 @@ build that matches your CUDA driver first, then install the remaining packages:
 
 ```bash
 pip install -r requirements.txt
+pip install -e Soft/shilab-binary-classifier
+pip install -e Soft/shilab-cluster-algorithm
 ```
 
 `openslide-python` requires the native OpenSlide library. On Windows, install
@@ -41,14 +46,8 @@ the OpenSlide binaries and add their DLL directory to `PATH` before reading SVS
 files.
 
 The Step 3 and Step 4 training scripts import the shared packages
-`shilab_classifier` and `cross_cluster_matching`. They are not included in the
-current UrineCytoAI directory, so install compatible copies before using these
-two scripts:
-
-```bash
-pip install -e /path/to/shilab-binary-classifier
-pip install -e /path/to/shilab-cluster-algorithm
-```
+`shilab_classifier` and `cross_cluster_matching`, installed from the local
+`Soft/` directory above.
 
 ## Inference: SVS to detected cell crops
 
