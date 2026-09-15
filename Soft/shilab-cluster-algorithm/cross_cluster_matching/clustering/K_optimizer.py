@@ -43,7 +43,10 @@ def optimize_k_for_candidate_clustering(
     malignant_ref_clusters=None
 ):
     """Select a candidate-clustering K value and return its results."""
-    print(f"  候选细胞数量为 {len(patient_candidate_normalized)}，开始优化k值...")
+    print(
+        f"  Candidate cell count: {len(patient_candidate_normalized)}; "
+        "starting K optimization..."
+    )
     
 
     k_optimization_dir = os.path.join(patient_save_dir, 'k_optimization')
@@ -69,7 +72,7 @@ def optimize_k_for_candidate_clustering(
     cell_nearest_ref_cluster = np.argmin(1 - cell_similarity_matrix, axis=1)
     
     for k in k_values:
-        print(f"  尝试k值: {k}")
+        print(f"  Trying k={k}")
         
         try:
 
@@ -85,7 +88,7 @@ def optimize_k_for_candidate_clustering(
 
             cluster_counts = np.bincount(patient_candidate_labels, minlength=k)
             if np.any(cluster_counts == 0):
-                print(f"  警告: k={k} 时出现空簇，跳过此k值")
+                print(f"  Warning: k={k} produced an empty cluster; skipping it")
                 continue
             
 
@@ -189,12 +192,12 @@ def optimize_k_for_candidate_clustering(
             )
                 
         except Exception as e:
-            print(f"  尝试k={k}时出错: {str(e)}，跳过此k值")
+            print(f"  Error while trying k={k}: {e}; skipping it")
             continue
     
 
     if not k_scores:
-        print("  警告: 所有k值尝试都失败，将使用默认k=2")
+        print("  Warning: all candidate K values failed; falling back to k=2")
 
         try:
             k = 2
@@ -223,10 +226,10 @@ def optimize_k_for_candidate_clustering(
             }
             
             best_k = k
-            print(f"  使用默认k={k}完成聚类")
+            print(f"  Clustering completed with fallback k={k}")
             
         except Exception as e:
-            print(f"  使用默认k=2也失败: {str(e)}，跳过此病理片子")
+            print(f"  Fallback k=2 also failed: {e}; skipping this slide")
             return None, None
     else:
 

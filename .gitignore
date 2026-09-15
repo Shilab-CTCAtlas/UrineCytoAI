@@ -25,6 +25,8 @@ env/
 /data/
 /configs/*.local.yaml
 /configs/*.private.yaml
+/demo/run_*/
+/demo/empty_cases/
 *.log
 
 # Operating-system files

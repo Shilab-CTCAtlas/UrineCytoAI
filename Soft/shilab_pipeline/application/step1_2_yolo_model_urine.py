@@ -173,7 +173,8 @@ def read_patch_worker(slide_path, coord_item, patch_size):
 
 
 # Legacy Step 2 single-cell completeness filtering
-    """Each worker thread opens OpenSlide once and reuses it."""
+def is_complete_single_cell(xyxy, image_shape, border_threshold=5):
+    """Return whether a single-cell detection stays inside the patch border."""
     x1, y1, x2, y2 = map(int, xyxy)
     img_h, img_w = image_shape[:2]
 

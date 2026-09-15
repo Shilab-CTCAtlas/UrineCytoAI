@@ -19,7 +19,13 @@ Usage:
 # Package version
 __version__ = "1.0.0"
 
-# Import key functions for easier access
-from .application.pipeline import run_pipeline
+__all__ = ["run_pipeline"]
 
-__all__ = ['run_pipeline']
+
+def __getattr__(name):
+    """Load the full pipeline only when its public entry point is requested."""
+    if name == "run_pipeline":
+        from .application.pipeline import run_pipeline
+
+        return run_pipeline
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

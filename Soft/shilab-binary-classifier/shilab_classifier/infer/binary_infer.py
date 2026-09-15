@@ -88,7 +88,7 @@ def process_malignant_predictions(results_df, malignant_output_dir, confidence_t
                 'confidence'   : confidence,
             })
         except Exception as e:
-            print(f"  ⚠️  Error processing {original_path}: {e}")
+            print(f"  Warning: error processing {original_path}: {e}")
 
     if renamed_files_info:
         renamed_df   = pd.DataFrame(renamed_files_info)
@@ -165,7 +165,7 @@ def predict_new_data(
 
     if has_subfolders:
         print("Subfolder structure detected; using ImageFolder.")
-        print("⚠️  Verify that the class mapping below matches training.")
+        print("Warning: verify that the class mapping below matches training.")
         try:
             dataset    = datasets.ImageFolder(input_dir, transform=transform)
             dataloader = DataLoader(dataset, batch_size=batch_size,
@@ -263,7 +263,7 @@ def predict_new_data(
     plt.close()
     print(f"Probability distribution plot saved to {prob_hist_path}")
 
-    print("\n✅ Inference complete.")
+    print("\nInference complete.")
     return results_df
 
 
